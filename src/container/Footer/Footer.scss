@@ -1,0 +1,22 @@
+.footer{
+    display: flex;
+    margin: 2rem;
+    position: -webkit-sticky;;
+    bottom: 0;
+    width: -webkit-fill-available;   
+
+    .footer__owner{
+        flex: 1;
+        align-items: flex-end;
+    }
+
+    .footer__socialmedia{
+        display: flex;
+        align-items: center;
+
+
+        .footer__icon{
+            padding: 0rem 1rem;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    input{
+        border: solid #f50025 0.1rem;
+        width: 16rem;
+        height: 2rem ;
+    }
+
+    button{
+        padding: 0.4rem 2rem;
+        margin: 1.8rem;
+        border: none;
+        background-color: #f50025;
+        border: solid #f50025 0.1rem;
+        color: #ffffff;
+    }
+}

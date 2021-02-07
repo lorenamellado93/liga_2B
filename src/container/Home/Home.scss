@@ -1,0 +1,33 @@
+.home{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+
+    .home__menu{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        align-items: center;
+
+        h1{
+            font-size: 4rem;
+            color: #0012b3;
+        }
+
+        .home__buttons{
+
+           button{
+            border: solid #f50025 0.1rem;
+            color: #f50025;
+            padding: 0.4rem 2rem;
+            background-color: #ffffff;
+            margin: 4rem 2rem;
+        } 
+        }
+        
+    }
+
+    .home__logo{
+        flex: 1;
+    }
+}
