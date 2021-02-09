@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,6 +13,7 @@ class Players extends React.Component{
           playersList: [],
          }
       }
+    
       componentWillMount() {
         fetch("http://localhost:4000/players")
             .then(res => res.json())
@@ -19,7 +22,7 @@ class Players extends React.Component{
                 playersList: res }))
             .catch(err => err);
     }
-    
+
     render() {
     
       return (
@@ -34,9 +37,11 @@ class Players extends React.Component{
                   <h4>{players.name} {players.surname}</h4>
                   <p>Age: {players.age}</p>
                   <p>Position: {players.position}</p>
-                  <p>Team: {}</p>
                     <div>
+                    <Link to={`/players/${players._id}`}
+                    playerName={players.name}>
                       <button className="players__details">Details</button>
+                    </Link>
                       <div>
                         <button className="players__button">Team</button>
                         <button className="players__button">Group</button>
@@ -44,7 +49,6 @@ class Players extends React.Component{
                     </div>
                     
                 </div>
-                
               ))
             ) : (
               null

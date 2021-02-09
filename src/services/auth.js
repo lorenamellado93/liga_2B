@@ -68,18 +68,19 @@ export const checkUser = async () => {
 } 
 
 export const logout = async () => {
-    const res = await fetch(logoutUrl, {
-        method: 'GET',
+    const response = await fetch(logoutUrl, {
+        method: 'POST',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
         },
         credentials: 'include',
     });
     
-    const jsonResponse = await res.json();
+    const jsonResponse = await response.json();
 
-    if (!res.ok) {
+    if (!response.ok) {
         throw new Error(jsonResponse.message);
       }
     return jsonResponse.data;

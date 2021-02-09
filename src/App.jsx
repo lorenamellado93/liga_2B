@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { checkUser } from './services/auth';
+import { checkUser, logout } from './services/auth';
 
 import Form from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import Players from './components/Players';
 import SecureRoute from './components/SecureRoute';
-import PrivateComponent from './components/PrivateComponent';
+import UserPage from './components/UserPage';
+import PlayerCard from './components/PlayerCard';
+import Groups from './components/Groups'
 
 import Navbar from './container/Navbar/Navbar';
 import Footer from './container/Footer';
@@ -14,11 +16,12 @@ import Home from './container/Home';
 
 import './App.scss';
 
+
 class App extends Component {
 
     state = {
         error: '',
-        hasUser: null,
+        hasUser: undefined,
     }
 
     componentDidMount() {
@@ -43,12 +46,26 @@ class App extends Component {
     handleInitUser = (userData) => {
         this.setState({ user: userData });
       };
-    
+
+    logoutUser = async () => {
+        try{
+            await logout();
+
+            this.setState({
+                user: null,
+                hasUser: false,
+            })
+        }catch(error) {
+            this.setState({ error: error.message, hasUser: false });
+        }
+    }
+
     render(){
     return(
         <Router>
+            {this.state.hasUser && <button onClick={this.logoutUser}>Logout</button>}
             {this.state.error && <p style={{ color: 'red', textAlign: 'center' }}>
-          Ha ocurrido un error: {this.state.error}
+            {this.state.error}
         </p>}
 
             <div className="app">
@@ -56,9 +73,12 @@ class App extends Component {
                 <Switch>
                     <Route path="/register" component={props => <Form {...props} saveUser={this.saveUser} />} />
                     <Route path="/login" component={props => <LoginForm {...props} saveUser={this.saveUser} />} />
-                    <SecureRoute path="/pepe" hasUser={this.state.hasUser} component={props => <PrivateComponent {...props} />} />
+                    <SecureRoute path="/pepe" hasUser={this.state.hasUser} component={props => <UserPage {...props} handleLogout={this.handleLogout} /> } />
                     <Route path="/players" exact component={ Players } />
+                    <Route path="/players/:playerID" component={ PlayerCard } />
+                    <Route path="/groups" exact component={ Groups } />
                     <Route path="/" component={ Home } />
+                    
                 </Switch>
                 
                 <Footer />

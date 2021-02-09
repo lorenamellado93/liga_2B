@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
+
 
 class SecureRoute extends React.Component {
     render() {
@@ -14,10 +14,6 @@ class SecureRoute extends React.Component {
         }
         
     }
-}
-
-SecureRoute.propTypes = {
-    hasUser: PropTypes.bool.isRequired,
 }
 
 export default SecureRoute;
