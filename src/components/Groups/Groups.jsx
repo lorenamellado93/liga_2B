@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFutbol } from '@fortawesome/free-solid-svg-icons';
@@ -34,10 +35,17 @@ class Groups extends React.Component{
                 <div className="groups__card" key={JSON.stringify(groups)}>
                   <FontAwesomeIcon className="groups__logo" icon={faFutbol} size="4x" color="#ededed"/>
                   <h4>Group: {groups.name}</h4>
+                  <p>Equipos de: </p>
+                  <p>  {groups.zone}</p>
                     <div>
-                      <div>
-                        <button className="groups__button">Players</button>
-                        <button className="groups__button">Teams</button>
+                      <div className="groups__buttons">
+                        <Link to='/players'>
+                            <button className="groups__button">Players</button>
+                        </Link>
+                        <Link to='/teams'>
+                            <button className="groups__button">Teams</button>
+                        </Link>
+                        
                       </div>
                     </div>
                     

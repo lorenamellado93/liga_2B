@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Teams.scss';
 
@@ -6,34 +7,55 @@ class Teams extends React.Component{
     constructor(props) {
         super(props);
         this.state = { 
-          teamList: [],
+          teamsList: [],
          }
       }
+    
       componentWillMount() {
         fetch("http://localhost:4000/teams")
             .then(res => res.json())
             .then(res => 
               this.setState({
-                teamList: res }))
+                teamsList: res }))
             .catch(err => err);
     }
-    
+
     render() {
-      console.log(this.state.teamList);
     
       return (
-        <div className="App">
-          <h2>Listado de personajes</h2>
+        <div className="teams">
+          <h2>Listado de Equipos</h2>
     
-          <div>
-            {this.state.teamList.length ? (
-              this.state.teamList.map((team) => (
-                <div key={JSON.stringify(team)}>
-                  <h4>Name: {team.name}</h4>
+          <div className="teams__content">
+            {this.state.teamsList.length ? (
+              this.state.teamsList.map((teams) => (
+                <div className="teams__card" key={JSON.stringify(teams)}>
+                  <div className="teams__img">
+                    <img src={teams.img} alt={teams.name}/>
+                  </div>
+                    
+                  
+                  <h4>{teams.name}</h4>
+                    <div className="teams__btn">
+                    <Link to={`/teams/${teams._id}`}
+                    playerName={teams.name}>
+                      <button className="teams__details">Details</button>
+                    </Link>
+                      <div>
+                        <Link to='/players'>
+                          <button className="teams__button">Players</button>
+                        </Link>
+                        <Link to='/groups'>
+                          <button className="teams__button">Group</button>
+                        </Link>
+                        
+                      </div>
+                    </div>
+                    
                 </div>
               ))
             ) : (
-              <h3>¡No hay personajes cargados!</h3>
+              null
             )}
           </div>
         </div>

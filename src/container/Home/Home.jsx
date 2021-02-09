@@ -17,8 +17,14 @@ class Home extends React.Component{
                             <button>Players</button>
                         </Link>
                         
-                        <button>Teams</button>
-                        <button>Groups</button>
+                        <Link to='/teams'>
+                            <button>Teams</button>
+                        </Link>
+                        
+                        <Link to='/groups'>
+                            <button>Groups</button>
+                        </Link>
+                        
                     </div>
                     
                 </div>

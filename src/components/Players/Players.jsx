@@ -43,8 +43,13 @@ class Players extends React.Component{
                       <button className="players__details">Details</button>
                     </Link>
                       <div>
-                        <button className="players__button">Team</button>
-                        <button className="players__button">Group</button>
+                        <Link to='/teams'>
+                          <button className="players__button">Team</button>
+                        </Link>
+                        <Link to='/groups'>
+                          <button className="players__button">Group</button>
+                        </Link>
+                        
                       </div>
                     </div>
                     

@@ -8,7 +8,8 @@ import Players from './components/Players';
 import SecureRoute from './components/SecureRoute';
 import UserPage from './components/UserPage';
 import PlayerCard from './components/PlayerCard';
-import Groups from './components/Groups'
+import Groups from './components/Groups';
+import Teams from './components/Teams';
 
 import Navbar from './container/Navbar/Navbar';
 import Footer from './container/Footer';
@@ -77,6 +78,7 @@ class App extends Component {
                     <Route path="/players" exact component={ Players } />
                     <Route path="/players/:playerID" component={ PlayerCard } />
                     <Route path="/groups" exact component={ Groups } />
+                    <Route path="/teams" exact component={ Teams } />
                     <Route path="/" component={ Home } />
                     
                 </Switch>
