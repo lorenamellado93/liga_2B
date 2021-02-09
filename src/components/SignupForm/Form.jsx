@@ -38,7 +38,9 @@ class Form extends Component {
 
     render(){
         return (
-            <form className="form" onSubmit={this.handelFormSubmit}>
+            <div className="sign">
+                <h2>Sign In:</h2>
+                <form className="form" onSubmit={this.handelFormSubmit}>
                 <label htmlFor="email">
                     <p>Email</p>
                     <input 
@@ -65,6 +67,7 @@ class Form extends Component {
                 
                 <button type="submit">Enviar</button>
             </form>
+            </div>
         )
     };
 }

@@ -37,6 +37,7 @@ class Players extends React.Component{
                   <h4>{players.name} {players.surname}</h4>
                   <p>Age: {players.age}</p>
                   <p>Position: {players.position}</p>
+                  <p>Team: {players.team}</p>
                     <div>
                     <Link to={`/players/${players._id}`}
                     playerName={players.name}>

@@ -35,6 +35,8 @@ class LoginForm extends Component {
 
     render(){
         return(
+            <div className ="login">
+                <h2>Login:</h2>
             <form className="form" onSubmit={this.handelFormSubmit}>
                 <label htmlFor="email">
                     <p>Email</p>
@@ -59,6 +61,7 @@ class LoginForm extends Component {
                     Ha ocurrido un error: {this.state.error}</p>}
                 <button type="submit">Enviar</button>
             </form>
+            </div>
         )
     }
 }
