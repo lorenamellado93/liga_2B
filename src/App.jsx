@@ -75,7 +75,7 @@ class App extends Component {
                     <Route path="/register" component={props => <Form {...props} saveUser={this.saveUser} />} />
                     <Route path="/login" component={props => <LoginForm {...props} saveUser={this.saveUser} />} />
                     <SecureRoute path="/userpage" hasUser={this.state.hasUser} component={props => <UserPage {...props} handleLogout={this.handleLogout} /> } />
-                    <Route path="/players" exact component={ Players } />
+                    <Route path="/players" component={ Players } />
                     <Route path="/players/:playerID" component={ PlayerCard } />
                     <Route path="/groups" exact component={ Groups } />
                     <Route path="/teams" exact component={ Teams } />

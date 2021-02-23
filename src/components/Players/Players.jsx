@@ -1,37 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+//import InfiniteScroll from "react-infinite-scroll-component";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 import './Players.scss';
 
-class Players extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = { 
-          playersList: [],
-         }
-      }
-    
-      componentWillMount() {
-        fetch("http://localhost:4000/players")
-            .then(res => res.json())
-            .then(res => 
-              this.setState({
-                playersList: res }))
-            .catch(err => err);
-    }
+const Players = (props) => {
+  const [playersList, setPlayersList] = useState([]);
+  const playersResults = playersList.results
 
-    render() {
-    
-      return (
-        <div className="players">
+  const API_PAGE = 1
+  const API_LIMIT = 20
+  const API_URL = (`http://localhost:4000/players?page=${API_PAGE}&limit=${API_LIMIT}`)
+
+  useEffect(() => {
+    fetch(API_URL)
+        .then((response) => response.json())
+        .then((data) => {
+          setPlayersList(data);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+  }, [API_URL]);
+
+  console.log(playersResults)
+
+  return () => {
+    <div className="players">
           <h2>Listado de jugadores</h2>
     
           <div className="players__content">
-            {this.state.playersList.length ? (
-              this.state.playersList.map((players) => (
+            {playersResults.length ? (
+              playersResults.map((players) => (
                 <div className="players__card" key={JSON.stringify(players)}>
                   <FontAwesomeIcon className="players__logo" icon={faUserCircle} size="4x" color="#ededed"/>
                   <h4>{players.name} {players.surname}</h4>
@@ -61,8 +64,8 @@ class Players extends React.Component{
             )}
           </div>
         </div>
-      );
-    }
+
+  }
 }
 
-export default Players
+export default Players;
