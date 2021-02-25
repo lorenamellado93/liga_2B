@@ -66,8 +66,7 @@ class App extends Component {
         <Router>
             {this.state.hasUser && <button onClick={this.logoutUser}>Logout</button>}
             {this.state.error && <p style={{ color: 'red', textAlign: 'center' }}>
-            {this.state.error}
-        </p>}
+            {this.state.error}</p>}
 
             <div className="app">
                 <Navbar />
