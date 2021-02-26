@@ -9,6 +9,20 @@
         text-align: center;
     }
 
+    &__page{
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        
+    }
+
+    &__search{
+        width: 50%;
+        height: 40px;
+        text-align: center;
+        border: 1px solid #f50025;
+    }
+
     &__content{
         display: flex;
         flex-direction: row;
@@ -45,6 +59,8 @@
         padding: 0.4rem 0.6rem;
         margin: 0.4rem;
     }
+
+    
     
 }
     
