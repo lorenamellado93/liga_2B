@@ -81,7 +81,6 @@ class App extends Component {
                     <Route path="/teams" exact component={ Teams } />
                     <Route path="/teams/:teamID" exact component={ TeamCard } />
                     <Route path="/" exact component={ Home } />
-
                     
                 </Switch>
                 
