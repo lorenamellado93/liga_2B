@@ -1,55 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import "./TeamCard.scss";
+import "./GroupCard.scss";
 
-const TeamCard = (props) => {
+const GroupCard = (props) => {
   const { id } = props.match.params;
-  const [team, setTeam] = useState([]);
-  const [teamplayers, setTeamPlayers] = useState([]);
-  const [teamGroup, setTeamGroup] = useState([]);
+  const [group, setGroup] = useState([]);
+  const [groupTeams, setGroupTeams] = useState([]);
 
-  const API_URL = `http://localhost:4000/teams/${props.match.params.teamID}`;
+  const API_URL = `http://localhost:4000/groups/${props.match.params.groupsID}`;
 
   useEffect(() => {
     fetch(API_URL)
       .then((response) => response.json())
       .then((data) => {
-        setTeam(data);
-        setTeamPlayers(data.players);
-        setTeamGroup(data.group);
+        setGroup(data);
+        setGroupTeams(data.teams)
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, [API_URL]);
 
-  console.log(teamGroup._id);
+  console.log(groupTeams);
 
   return (
     <div>
-      <p>{team.name}</p>
-      {teamplayers.map((player) => (
+      <p>{group.name}</p>
+      <p>{group.zone}</p>
+      
+      {groupTeams.map((player) => (
         <div className="players__card">
           <h4>
             {player.name} {player.surname}
           </h4>
         </div>
       ))}
+       
       <Link to={"/players"}>
         <button>Back Players</button>
       </Link>
-    
-      <Link
-        to={{
-          pathname: `/groups/${teamGroup._id}`,
-          state: team,
-        }}
-      >
+      <Link to={`/group/`}>
         <button className="players__button">Group</button>
       </Link>
     </div>
   );
 };
 
-export default TeamCard;
+export default GroupCard;

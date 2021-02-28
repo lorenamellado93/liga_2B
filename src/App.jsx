@@ -11,6 +11,7 @@ import PlayerCard from './components/PlayerCard';
 import Groups from './components/Groups';
 import Teams from './components/Teams';
 import TeamCard from './components/TeamCard';
+import GroupCard from './components/GroupCard';
 
 import Navbar from './container/Navbar/Navbar';
 import Footer from './container/Footer';
@@ -78,6 +79,7 @@ class App extends Component {
                     <Route path="/players" exact component={ Players } />
                     <Route path="/players/:playerID" exact component={ PlayerCard } />
                     <Route path="/groups" exact component={ Groups } />
+                    <Route path="/groups/:groupsID" exact component={ GroupCard } />
                     <Route path="/teams" exact component={ Teams } />
                     <Route path="/teams/:teamID" exact component={ TeamCard } />
                     <Route path="/" exact component={ Home } />

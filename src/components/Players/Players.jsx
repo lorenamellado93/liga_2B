@@ -103,10 +103,11 @@ const Players = () => {
                         <button className="players__details">Details</button>
                       </Link>
                         <div>
-                          <Link to={`/teams/${players.team._id}`}>
+                        <Link to={`/teams/${players.team._id}`}>
                             <button className="players__button">Team</button>
                           </Link>
-                          <Link to='/groups'>
+
+                          <Link to={`/group`}>
                             <button className="players__button">Group</button>
                           </Link>
                           
