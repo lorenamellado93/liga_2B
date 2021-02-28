@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 import './PlayerCard.scss';
 
-function PlayerCard(props) {
+const PlayerCard = (props) => {
 
-    const[player, setPlayer] = useState([])
-	
-	useEffect(() => {
-        fetch(`http://localhost:4000/players/:id`)
-            .then(res => res.json())
-            .then((playerInfo) => {
-                setPlayer(playerInfo)})
-            .catch(err => err);
-    }, [])
-
-    console.log(player.name)
-	return (
-		<div>
-			<h3>{player.name}</h3>
-		</div>
-	);
-}
+    if(!props.location.state) props.history.push("/players");
+  
+    const [player, setPlayer] = useState({...props.location.state});
+  
+    console.log(player);
+  
+    return (
+      <div>
+        <p>{player.name}</p>
+        <Link to={"/players"}>
+          <button>Back Players</button>
+        </Link>
+      </div>
+    );
+  };
 
 export default PlayerCard

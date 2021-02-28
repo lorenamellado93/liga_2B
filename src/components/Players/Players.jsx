@@ -42,7 +42,7 @@ const Players = () => {
                         <button className="players__details">Details</button>
                       </Link>
                         <div>
-                          <Link to='/teams'>
+                          <Link to={`/team/${players.team._id}`}>
                             <button className="players__button">Team</button>
                           </Link>
                           <Link to='/groups'>

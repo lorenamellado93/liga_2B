@@ -10,6 +10,7 @@ import UserPage from './components/UserPage';
 import PlayerCard from './components/PlayerCard';
 import Groups from './components/Groups';
 import Teams from './components/Teams';
+import TeamCard from './components/TeamCard';
 
 import Navbar from './container/Navbar/Navbar';
 import Footer from './container/Footer';
@@ -71,14 +72,16 @@ class App extends Component {
             <div className="app">
                 <Navbar />
                 <Switch>
-                    <Route path="/register" component={props => <Form {...props} saveUser={this.saveUser} />} />
-                    <Route path="/login" component={props => <LoginForm {...props} saveUser={this.saveUser} />} />
-                    <SecureRoute path="/userpage" hasUser={this.state.hasUser} component={props => <UserPage {...props} handleLogout={this.handleLogout} /> } />
+                    <Route path="/register" exact component={props => <Form {...props} saveUser={this.saveUser} />} />
+                    <Route path="/login" exact component={props => <LoginForm {...props} saveUser={this.saveUser} />} />
+                    <SecureRoute path="/userpage" exact hasUser={this.state.hasUser} component={props => <UserPage {...props} handleLogout={this.handleLogout} /> } />
                     <Route path="/players" exact component={ Players } />
-                    <Route path="/players/:playerID" component={ PlayerCard } />
+                    <Route path="/players/:playerID" exact component={ PlayerCard } />
                     <Route path="/groups" exact component={ Groups } />
                     <Route path="/teams" exact component={ Teams } />
-                    <Route path="/" component={ Home } />
+                    <Route path="/teams/:teamID" exact component={ TeamCard } />
+                    <Route path="/" exact component={ Home } />
+
                     
                 </Switch>
                 
