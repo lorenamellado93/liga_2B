@@ -22,26 +22,22 @@ const GroupCard = (props) => {
       });
   }, [API_URL]);
 
-  console.log(groupTeams);
+  console.log(group);
 
   return (
     <div>
       <p>{group.name}</p>
       <p>{group.zone}</p>
       
-      {groupTeams.map((player) => (
+      {groupTeams.map((team) => (
         <div className="players__card">
-          <h4>
-            {player.name} {player.surname}
-          </h4>
+          <Link to={`/teams/${team._id}`}>{team.name}</Link>
+
         </div>
       ))}
        
       <Link to={"/players"}>
-        <button>Back Players</button>
-      </Link>
-      <Link to={`/group/`}>
-        <button className="players__button">Group</button>
+        <button>Back GroupList</button>
       </Link>
     </div>
   );

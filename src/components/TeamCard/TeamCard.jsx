@@ -24,13 +24,14 @@ const TeamCard = (props) => {
       });
   }, [API_URL]);
 
-  console.log(teamGroup._id);
+  console.log();
 
   return (
-    <div>
-      <p>{team.name}</p>
+    <div className="teams">
+      <h2>{team.name}</h2>
+      
       {teamplayers.map((player) => (
-        <div className="players__card">
+        <div >
           <h4>
             {player.name} {player.surname}
           </h4>
