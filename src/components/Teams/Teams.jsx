@@ -21,7 +21,6 @@ const Teams = () => {
         });
     });
 
-    console.log()
     
       return (
         <div className="teams">

@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+
 import "./TeamCard.scss";
 
 const TeamCard = (props) => {
-  const { id } = props.match.params;
+  // const { id } = props.match.params;
   const [team, setTeam] = useState([]);
-  const [teamplayers, setTeamPlayers] = useState([]);
+  let [teamplayers, setTeamPlayers] = useState([]);
   const [teamGroup, setTeamGroup] = useState([]);
 
   const API_URL = `http://localhost:4000/teams/${props.match.params.teamID}`;
+
 
   useEffect(() => {
     fetch(API_URL)
@@ -24,30 +28,54 @@ const TeamCard = (props) => {
       });
   }, [API_URL]);
 
-  console.log();
 
   return (
     <div className="teams">
-      <h2>{team.name}</h2>
-      
-      {teamplayers.map((player) => (
-        <div >
-          <h4>
-            {player.name} {player.surname}
-          </h4>
+      <div className="teams__info">
+        <img className="teams__img" src={team.img} alt="Escudo Deportivo" />
+        <div className="teams__data">
+          <h2>{team.name}</h2>
+          <h4>{team.stadium}</h4>
+          <h4>{team.coach}</h4>
+          <Link
+            to={{
+              pathname: `/groups/${teamGroup._id}`,
+              state: team,
+            }}
+          >
+            <button className="players__button">Group</button>
+          </Link>
         </div>
-      ))}
+      </div>
+
+      <div className="players__content">
+        {teamplayers.map((players) => (
+          <div className="players__card" key={JSON.stringify(players._id)}>
+            <FontAwesomeIcon
+              className="players__logo"
+              icon={faUserCircle}
+              size="4x"
+              color="#ededed"
+            />
+            <h4>
+              {players.name} {players.surname}
+            </h4>
+            <p>Age: {players.age}</p>
+            <p>Position: {players.position}</p>
+            <div>
+            
+            <Link to={{
+                      pathname: `/players/${players._id}`,
+                      state: players
+                    }}>
+                <button className="players__details">Details</button>
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
       <Link to={"/players"}>
         <button>Back Players</button>
-      </Link>
-    
-      <Link
-        to={{
-          pathname: `/groups/${teamGroup._id}`,
-          state: team,
-        }}
-      >
-        <button className="players__button">Group</button>
       </Link>
     </div>
   );

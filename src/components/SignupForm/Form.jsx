@@ -27,7 +27,7 @@ class Form extends Component {
             const data = await register(this.state);
             this.props.saveUser(data);
             this.setState(INITIAL_STATE);
-            this.props.history.push('/pepe');
+            this.props.history.push('/userpage');
         }catch (err) {
             this.setState({
                 error: err.message,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { checkUser, logout } from './services/auth';
 
@@ -13,6 +13,7 @@ import Teams from './components/Teams';
 import TeamCard from './components/TeamCard';
 import GroupCard from './components/GroupCard';
 import Map from './components/Map';
+import LineUp from './components/LineUp';
 
 import Navbar from './container/Navbar/Navbar';
 import Footer from './container/Footer';
@@ -21,62 +22,62 @@ import Home from './container/Home';
 import './App.scss';
 
 
-class App extends Component {
+const App = () => {
 
-    state = {
-        error: '',
-        hasUser: undefined,
-    }
+    const [error, setError] = useState("");
+    const [user, setUser] = useState({});
+    const [hasUser, setHasUser] = useState(null)
 
-    componentDidMount() {
-        this.checkUserSession();
-    }
+    useEffect(() => { 
+        checkUserSession()
+    }, [])
 
-    async checkUserSession(){
+    const checkUserSession = async () => {
         try{
             const data = await checkUser();
             delete data.password;
-            this.setState({ user: data, hasUser: true });
+            setUser(data);
+            setHasUser(true);
         } catch(error) {
-            this.setState({ error: error.message, hasUser: false });
+            setError(error.message);
+            setHasUser(false)
         }
     }
 
-    saveUser = user => {
+    const saveUser = (user) => {
         delete user.password;
-        this.setState({ user, hasUser: true })
+        setUser(user);
+        setHasUser(true);
+        setError("");
     }
 
-    handleInitUser = (userData) => {
-        this.setState({ user: userData });
+    const handleInitUser = (userData) => {
+        setUser(userData);
       };
 
-    logoutUser = async () => {
+    const logoutUser = async () => {
         try{
             await logout();
+            setUser(null)
+            setHasUser(false);
 
-            this.setState({
-                user: null,
-                hasUser: false,
-            })
         }catch(error) {
-            this.setState({ error: error.message, hasUser: false });
+            setError(error.message);
+            setHasUser(false)
         }
     }
-
-    render(){
     return(
         <Router>
-            {this.state.hasUser && <button onClick={this.logoutUser}>Logout</button>}
-            {this.state.error && <p style={{ color: 'red', textAlign: 'center' }}>
-            {this.state.error}</p>}
+            {hasUser && <button onClick={logoutUser}>Logout</button>}
+            {error && <p style={{ color: 'red', textAlign: 'center' }}>
+            {error}</p>}
 
             <div className="app">
                 <Navbar />
                 <Switch>
-                    <Route path="/register" exact component={props => <Form {...props} saveUser={this.saveUser} />} />
-                    <Route path="/login" exact component={props => <LoginForm {...props} saveUser={this.saveUser} />} />
-                    <SecureRoute path="/userpage" exact hasUser={this.state.hasUser} component={props => <UserPage {...props} handleLogout={this.handleLogout} /> } />
+                    <Route path="/register" exact component={props => <Form {...props} saveUser={saveUser} />} />
+                    <Route path="/login" exact component={props => <LoginForm {...props} saveUser={saveUser} />} />
+                    <SecureRoute path="/userpage" exact hasUser={hasUser} component={props => <UserPage {...props} handleLogout={logoutUser} /> } />
                     <Route path="/players" exact component={ Players } />
                     <Route path="/players/:playerID" exact component={ PlayerCard } />
                     <Route path="/groups" exact component={ Groups } />
@@ -84,6 +85,7 @@ class App extends Component {
                     <Route path="/teams" exact component={ Teams } />
                     <Route path="/teams/:teamID" exact component={ TeamCard } />
                     <Route path="/map" exact component={ Map } />
+                    <Route path="/lineup" exact component={ LineUp } />
                     <Route path="/" exact component={ Home } />
                     
                 </Switch>
@@ -92,7 +94,6 @@ class App extends Component {
             </div>
         </Router>
     )
-    }
 }
 
 export default App;

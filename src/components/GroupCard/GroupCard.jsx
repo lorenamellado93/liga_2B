@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./GroupCard.scss";
 
 const GroupCard = (props) => {
-  const { id } = props.match.params;
+  // const { id } = props.match.params;
   const [group, setGroup] = useState([]);
   const [groupTeams, setGroupTeams] = useState([]);
 
@@ -25,19 +25,21 @@ const GroupCard = (props) => {
   console.log(group);
 
   return (
-    <div>
-      <p>{group.name}</p>
-      <p>{group.zone}</p>
+    <div className="group">
+      <h2>Grupo {group.name}</h2>
+      <h3>Zona: {group.zone}</h3>
       
-      {groupTeams.map((team) => (
-        <div className="players__card">
-          <Link to={`/teams/${team._id}`}>{team.name}</Link>
-
+      <div className="group__content">
+        {groupTeams.map((team) => (
+        <div className="group__card">
+          <img className="group__img" src={team.img} alt={team.name}/>
+          <Link className="group__details" to={`/teams/${team._id}`}>{team.name}</Link>
         </div>
-      ))}
-       
+        ))}
+      </div>
+      
       <Link to={"/players"}>
-        <button>Back GroupList</button>
+        <button className="group__btn">Back GroupList</button>
       </Link>
     </div>
   );

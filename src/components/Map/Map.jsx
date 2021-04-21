@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   ComposableMap,
   ZoomableGroup,
@@ -8,30 +8,28 @@ import {
 
 const wrapperStyles = {
   width: "100%",
-  maxWidth: 2000,
+  maxWidth: "50%",
   margin: "0 auto"
 };
 
-class WorldMap extends Component {
-  state = {
-    highlighted: "",
-    hovered: false
-  };
-  handleMove = (geo) => {
-    if (this.state.hovered) return;
-    this.setState({
-      hovered: true,
-      highlighted: geo.properties.GROUP
-    });
-    console.log(geo.properties.GROUP);
-  };
-  handleLeave = () => {
-    this.setState({
-      highlighted: "",
-      hovered: false
-    });
-  };
-  render() {
+
+const WorldMap = () => {
+  
+    const [highlighted, setHighlighted] = useState("")
+    const [hovered, setHovered] = useState(false)
+    const map = "https://raw.githubusercontent.com/lorenamellado93/group-spain-map/main/group-map.json";
+
+  const handleMove = (map) => {
+    if (hovered) return;
+    setHovered(true)
+    setHighlighted(map.properties.GROUP)
+    };
+
+  const handleLeave = () => {
+    setHighlighted("")
+    setHovered(false)
+    };
+
     return (
       <div style={wrapperStyles}>
         <ComposableMap
@@ -42,13 +40,13 @@ class WorldMap extends Component {
           width={960}
           height={551}
           style={{
-            width: "100%",
+            width: "200%",
             height: "auto"
           }}
         >
           <ZoomableGroup center={[5, 35]} disablePanning>
             <Geographies
-              geography="https://raw.githubusercontent.com/lorenamellado93/group-spain-map/main/group-map.json"
+              geography={map}
               disableOptimization
             >
               {(geographies, projection) =>
@@ -58,16 +56,16 @@ class WorldMap extends Component {
                     cacheId={geography.properties.ISO_A3 + i}
                     geography={geography}
                     projection={projection}
-                    onMouseMove={this.handleMove}
-                    onMouseLeave={this.handleLeave}
+                    onMouseMove={handleMove}
+                    onMouseLeave={handleLeave}
                     style={{
                       default: {
                         fill:
-                          geography.properties.GROUP === this.state.highlighted
+                          geography.properties.GROUP === highlighted
                             ? "#F50025"
                             : "#EDEDED",
                         stroke:
-                          geography.properties.GROUP === this.state.highlighted
+                          geography.properties.GROUP === highlighted
                             ? "#F50025"
                             : "#CCCCCC",
                         strokeWidth: 0.75,
@@ -97,7 +95,6 @@ class WorldMap extends Component {
         </ComposableMap>
       </div>
     );
-  }
 }
 
 export default WorldMap;

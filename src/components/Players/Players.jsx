@@ -24,6 +24,7 @@ const Players = () => {
         .then((data) => {
           setPlayersList(data.results);
           setNewPlayersList(data.results);
+          console.log(data)
         })
         .catch((err) => {
           console.log(err.message);
@@ -44,7 +45,7 @@ const Players = () => {
       return player.name.match(input);
     })
   }
-  
+
   function handleScroll() {
     const scrollTop = (document.documentElement
       && document.documentElement.scrollTop)
@@ -71,8 +72,6 @@ const Players = () => {
       setIsBottom(false);
     }
 
-    console.log(playersList)
-
   return (
     <div className="players">
       <h2>Listado de jugadores</h2>
@@ -94,14 +93,15 @@ const Players = () => {
               <h4>{players.name} {players.surname}</h4>
               <p>Age: {players.age}</p>
               <p>Position: {players.position}</p>
-              <p>Team: {players.team["name"]}</p>
+              <p>Team: {players.team.name}</p>
               <div>
-                    <Link to={{
+            <Link to={{
                       pathname: `/players/${players._id}`,
                       state: players
                     }}>
-                        <button className="players__details">Details</button>
-                      </Link>
+                <button className="players__details">Details</button>
+              </Link>
+            </div>
                         <div>
                         <Link to={`/teams/${players.team._id}`}>
                             <button className="players__button">Team</button>
@@ -113,7 +113,7 @@ const Players = () => {
                           
                         </div>
                         </div>
-            </div>
+          
         ))}
         </div>
     </div>

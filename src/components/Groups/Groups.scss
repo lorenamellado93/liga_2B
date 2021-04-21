@@ -1,6 +1,6 @@
 .groups{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     margin: 10%;
     justify-content: space-between;
@@ -9,8 +9,18 @@
         text-align: center;
     }
 
+    &__container{
+        display: flex;
+    }
+
+    &__grupos__map{
+        display: flex;
+        flex: 1;
+    }
+
     &__content{
         display: flex;
+        flex: 1;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
@@ -22,11 +32,12 @@
         flex-direction: column;
         align-items: center;
         padding: 1rem 0.4rem;
-        margin: 2rem 2.8rem;
+        margin: 1rem 1rem;
         border: solid #f50025 0.1rem;
 
         p{
             margin: 0.2rem;
+            font-size: 10px;
         }
     }
 
@@ -43,8 +54,8 @@
         background-color: #ffffff;
         border: solid #f50025 0.1rem;
         color: #f50025;
-        padding: 0.4rem 0.6rem;
-        margin: 1rem 0.4rem;
+        padding: 0rem 0.2rem;
+        margin: 0.2rem 0.1rem;
     }
     
 }

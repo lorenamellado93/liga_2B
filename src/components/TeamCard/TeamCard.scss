@@ -1,0 +1,21 @@
+.teams{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 10%;
+    justify-content: center;
+    align-items: center;
+
+    &__info{
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+    }
+
+    &__data{
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
+}

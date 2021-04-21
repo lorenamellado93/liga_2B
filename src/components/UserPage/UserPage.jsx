@@ -1,11 +1,11 @@
-import { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './UserPage.scss';
 
-class UserPage extends Component {
+const UserPage = () => {
 
-    render() {
         return (
             <div className="userpage">
                 <h3>Welcome!</h3>
@@ -13,13 +13,14 @@ class UserPage extends Component {
                     <button>Players</button>
                     <button>Teams</button>
                     <button>Groups</button>
-                    <button>My LineUP</button>
+                    <Link to={`/lineup`}>
+                      <button>My LineUp</button>
+                    </Link>
                     <button>Add Player</button>
                 </div>
                 
             </div>
           )   
-    }
 }
 
 UserPage.propTypes = {
