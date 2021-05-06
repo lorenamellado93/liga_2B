@@ -12,7 +12,7 @@ const TeamCard = (props) => {
   let [teamplayers, setTeamPlayers] = useState([]);
   const [teamGroup, setTeamGroup] = useState([]);
 
-  const API_URL = `http://localhost:4000/teams/${props.match.params.teamID}`;
+  const API_URL = `https://liga-2b.herokuapp.com/teams/${props.match.params.teamID}`;
 
 
   useEffect(() => {

@@ -12,7 +12,7 @@ const Groups = (props) => {
 
   const [groupList, setGroupList] = useState([]);
 
-  const API_URL = `http://localhost:4000/groups`;
+  const API_URL = `https://liga-2b.herokuapp.com/groups`;
 
   useEffect(() => {
     fetch(API_URL)
@@ -37,7 +37,7 @@ const Groups = (props) => {
         <div className="groups__content">
           {groupList.map((groups) => (
             <div className="groups__card" key={JSON.stringify(groups)}>
-              <h4>Group: {groups.name}</h4>
+              <h3>Group: {groups.name}</h3>
               <p>Equipos de: </p>
               <p> {groups.zone}</p>
               <div>

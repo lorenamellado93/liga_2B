@@ -1,16 +1,24 @@
 .groups{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    margin: 10%;
+    padding: 1rem;
     justify-content: space-between;
 
     h2{
         text-align: center;
+        font-size: 2rem;
+        color: #0012b3;
+    }
+
+    h3{
+        text-align: center;
+        font-size: 1.4rem;
     }
 
     &__container{
         display: flex;
+        flex-direction: column;
     }
 
     &__grupos__map{
@@ -27,17 +35,18 @@
     }
 
     &__card{
-        width: 30%;
+        width: 40%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 1rem 0.4rem;
-        margin: 1rem 1rem;
-        border: solid #f50025 0.1rem;
-
+        padding: 1rem 0rem;
+        margin: 1rem 0.8rem;
+        border: solid #f50025 0.2rem;
+        border-radius: 0.4rem;
         p{
             margin: 0.2rem;
-            font-size: 10px;
+            font-size: 1.2rem;
+            text-align: center;
         }
     }
 
@@ -52,11 +61,13 @@
 
     &__button{
         background-color: #ffffff;
-        border: solid #f50025 0.1rem;
+        border: solid #f50025 0.14rem;
         color: #f50025;
-        padding: 0rem 0.2rem;
-        margin: 0.2rem 0.1rem;
+        padding: 0.2rem 0.4rem;
+        margin: 0.2rem 0.4rem;
+        border-radius: 0.2rem;
+        font-family: 'Teko', sans-serif;
+        font-size: 1.2rem;
     }
-    
 }
     

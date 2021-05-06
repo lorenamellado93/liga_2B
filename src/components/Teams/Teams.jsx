@@ -5,9 +5,9 @@ import './Teams.scss';
 
 const Teams = () => { 
     const [teamList, setTeamList] = useState([]);
-    const [teamGroup, setTeamGroup] = useState([]);
+    const [teamGroup, setTeamGroup] = useState([])
 
-    const API_URL = (`http://localhost:4000/teams`)
+    const API_URL = (`https://liga-2b.herokuapp.com/teams`)
     
       useEffect(() => {
         fetch(API_URL)
@@ -15,26 +15,26 @@ const Teams = () => {
         .then((data) => {
           setTeamList(data);
           setTeamGroup(data.group);
+          
         })
         .catch((err) => {
           console.log(err.message);
         });
     });
 
-    
       return (
-        <div className="teams">
+        <div className="teams"> 
           <h2>Listado de Equipos</h2>
     
-          <div className="teams__content">
+          <div className="teams__content" >
             {teamList.map((teams) => (
                 <div className="teams__card" key={JSON.stringify(teams)}>
                   <div className="teams__img">
                     <img src={teams.img} alt={teams.name}/>
                   </div>
                     
-                  
-                  <h4>{teams.name}</h4>
+                  <div className="teams__data">
+                    <h4>{teams.name}</h4>
                     <div className="teams__btn">
                     <Link to={`/teams/${teams._id}`}>
                       <button className="teams__details">Details</button>
@@ -49,6 +49,8 @@ const Teams = () => {
                         
                       </div>
                     </div>
+                  </div>
+                  
                     
                 </div>
               ))

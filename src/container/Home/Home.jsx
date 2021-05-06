@@ -8,7 +8,7 @@ class Home extends React.Component{
         return (
             <section className="home">
                 <div className="home__menu">
-                    <div>
+                    <div className="home__title">
                        <h1>Liga Española 2B</h1> 
                     </div>
 
@@ -29,7 +29,7 @@ class Home extends React.Component{
                     
                 </div>
 
-                <div className="home__Logo">
+                <div className="home__logo">
                     <img src={process.env.PUBLIC_URL + '/logo.png'} alt="TDF_logo"/>
                 </div>
         

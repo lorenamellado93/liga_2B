@@ -8,7 +8,7 @@ const GroupCard = (props) => {
   const [group, setGroup] = useState([]);
   const [groupTeams, setGroupTeams] = useState([]);
 
-  const API_URL = `http://localhost:4000/groups/${props.match.params.groupsID}`;
+  const API_URL = `https://liga-2b.herokuapp.com/groups/${props.match.params.groupsID}`;
 
   useEffect(() => {
     fetch(API_URL)

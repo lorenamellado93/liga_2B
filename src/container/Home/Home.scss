@@ -9,25 +9,33 @@
         flex: 1;
         align-items: center;
 
-        h1{
-            font-size: 4rem;
+        .home__title{
+            font-size: 2rem;
             color: #0012b3;
         }
 
         .home__buttons{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
 
            button{
-            border: solid #f50025 0.1rem;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            border: solid #f50025 0.2rem;
+            border-radius: 0.4rem;
             color: #f50025;
-            padding: 0.4rem 2rem;
+            padding: 0.4rem 4rem;
             background-color: #ffffff;
-            margin: 4rem 2rem;
+            margin: 2rem 2rem;
         } 
         }
         
     }
 
     .home__logo{
+        display: none;
         flex: 1;
     }
 }

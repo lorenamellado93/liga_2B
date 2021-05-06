@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import './Navbar.scss';
 
@@ -49,13 +50,17 @@ class Navbar extends React.Component {
         </div>
 
         <Link className="navbar__logo" to='/'>
-          <img src={process.env.PUBLIC_URL + '/logo.png'} alt="TDF_logo"/>
+          <img className="navbar__img" src={process.env.PUBLIC_URL + '/logo.png'} alt="TDF_logo"/>
         </Link>
 
-        <div className="navbar__user">
+        <Link className="navbar__login" to='/register'>
+        <FontAwesomeIcon className="navbar__icon" icon={faUser} size="2x" color="$tdf-red"/>
+        </Link>
+
+        {/* <div className="navbar__user">
           <Link className="navbar__button" to="/register">Sign Up</Link>
           <Link className="navbar__login" to="/login" >Login </Link>
-        </div>
+        </div> */}
       </nav>
     );
   }

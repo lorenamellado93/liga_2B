@@ -1,7 +1,7 @@
-const registerUrl = 'http://localhost:4000/user/register';
-const loginUrl = 'http://localhost:4000/user/login';
-const checkUrl = 'http://localhost:4000/user';
-const logoutUrl = 'http://localhost:4000/user/logout';
+const registerUrl = 'https://liga-2b.herokuapp.com/user/register';
+const loginUrl = 'https://liga-2b.herokuapp.com/user/login';
+const checkUrl = 'https://liga-2b.herokuapp.com/user';
+const logoutUrl = 'https://liga-2b.herokuapp.com/user/logout';
 
 export const register = async (userData) => {
 

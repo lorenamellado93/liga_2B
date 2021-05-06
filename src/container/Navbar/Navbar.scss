@@ -1,4 +1,43 @@
-.navbar{
+
+@media only screen and (max-width: 480px) {
+    .navbar{
+        display: flex;
+        align-items: flex-start;
+        align-content: space-between;
+        width: 100%;
+        
+
+        .navbar__menu{
+            display: flex;
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .navbar__logo{
+            display: flex;
+            flex: 2;
+            justify-content: center;
+            height: 8rem;
+            padding-top: 1rem;
+            
+            img{
+                height: 8rem;
+            }
+            
+        }
+        
+        .navbar__login{
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
+            color: #f50025;
+            padding: 2rem;
+            
+        }
+
+    }
+}
+/* .navbar{
     display: flex;
     margin: 2rem ;
 
@@ -56,4 +95,4 @@
             color: #f50025;
         }
     }
-}
+} */

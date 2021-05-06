@@ -8,7 +8,7 @@ const SearchPlayer = () => {
     let [search, setSearch] = useState([]);
     const [input, setInput] = useState("");
 
-    const API_URL = (`http://localhost:4000/players/allplayers`)
+    const API_URL = (`https://liga-2b.herokuapp.com/players/allplayers`)
 
   useEffect(() => {
     fetch(API_URL)

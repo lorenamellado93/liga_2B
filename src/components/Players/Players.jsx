@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
-import SearchPlayer from '../SearchPlayer';
+import SearchPlayer from "../SearchPlayer";
 
-import './Players.scss';
+import "./Players.scss";
 
 const Players = () => {
   let [playersList, setPlayersList] = useState([]);
@@ -15,24 +15,22 @@ const Players = () => {
   const [input, setInput] = useState("");
   const [isBottom, setIsBottom] = useState(false);
 
-  const API_LIMIT = 20
-  const API_URL = (`http://localhost:4000/players?page=${page}&limit=${API_LIMIT}`)
+  const API_LIMIT = 20;
+  const API_URL = `https://liga-2b.herokuapp.com/players?page=${page}&limit=${API_LIMIT}`;
 
   useEffect(() => {
     fetch(API_URL)
-        .then((response) => response.json())
-        .then((data) => {
-          setPlayersList(data.results);
-          setNewPlayersList(data.results);
-          console.log(data)
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
+      .then((response) => response.json())
+      .then((data) => {
+        setPlayersList(data.results);
+        setNewPlayersList(data.results);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [API_URL]);
 
   const handleChange = (e) => {
@@ -40,20 +38,20 @@ const Players = () => {
     setInput(e.target.value);
   };
 
-  if(input.length > 0) {
+  if (input.length > 0) {
     playersList = playersList.filter((player) => {
       return player.name.match(input);
-    })
+    });
   }
 
   function handleScroll() {
-    const scrollTop = (document.documentElement
-      && document.documentElement.scrollTop)
-      || document.body.scrollTop;
-    const scrollHeight = (document.documentElement
-      && document.documentElement.scrollHeight)
-      || document.body.scrollHeight;
-    if (scrollTop + window.innerHeight + 50 >= scrollHeight){
+    const scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+    const scrollHeight =
+      (document.documentElement && document.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
+    if (scrollTop + window.innerHeight + 50 >= scrollHeight) {
       setIsBottom(true);
     }
   }
@@ -66,60 +64,77 @@ const Players = () => {
 
   const addItems = () => {
     if (playersList.length !== 0) {
-      setPage(prevPage => prevPage + 1);
+      setPage((prevPage) => prevPage + 1);
       setPlayersList(playersList.concat(newPlayersList));
-      };
-      setIsBottom(false);
     }
+    setIsBottom(false);
+  };
 
   return (
     <div className="players">
       <h2>Listado de jugadores</h2>
 
-        <div className="players__page">
+      <div className="players__page">
         <input
           className="players__search"
           type="text"
           placeholder="Search"
           onChange={handleChange}
           value={input}
-          />
-        </div>
+        />
+      </div>
 
-        <div className="players__content" onScroll={handleScroll}>
-          {playersList.map(players => (
-            <div className="players__card" key={JSON.stringify(players._id)}>
-              <FontAwesomeIcon className="players__logo" icon={faUserCircle} size="4x" color="#ededed"/>
-              <h4>{players.name} {players.surname}</h4>
-              <p>Age: {players.age}</p>
+      <div className="players__content" onScroll={handleScroll}>
+        {playersList.map((players) => (
+          <div className="players__card" key={JSON.stringify(players._id)}>
+            <div className="players__icon">
+              <FontAwesomeIcon
+                className="players__logo"
+                icon={faUserCircle}
+                size="4x"
+                color="#ededed"
+              />
+              <h4>
+                {players.name} {players.surname}
+              </h4>
+            </div>
+            <div className="players__description">
+              <div className="players__info">
+                <p>Age: {players.age}</p>
               <p>Position: {players.position}</p>
               <p>Team: {players.team.name}</p>
+              </div>
+
+              <div className ="players__buttons">
               <div>
-            <Link to={{
-                      pathname: `/players/${players._id}`,
-                      state: players
-                    }}>
+              <Link
+                to={{
+                  pathname: `/players/${players._id}`,
+                  state: players,
+                }}
+              >
                 <button className="players__details">Details</button>
               </Link>
             </div>
-                        <div>
-                        <Link to={`/teams/${players.team._id}`}>
-                            <button className="players__button">Team</button>
-                          </Link>
+            <div>
+              <Link to={`/teams/${players.team._id}`}>
+                <button className="players__button">Team</button>
+              </Link>
 
-                          <Link to={`/group`}>
-                            <button className="players__button">Group</button>
-                          </Link>
-                          
-                        </div>
-                        </div>
-          
+              <Link to={`/group`}>
+                <button className="players__button">Group</button>
+              </Link>
+            </div>
+              </div>
+
+            </div>
+
+            
+          </div>
         ))}
-        </div>
+      </div>
     </div>
   );
-}
-
-
+};
 
 export default Players;

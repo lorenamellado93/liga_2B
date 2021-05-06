@@ -8,7 +8,7 @@ import {
 
 const wrapperStyles = {
   width: "100%",
-  maxWidth: "50%",
+  maxWidth: "100%",
   margin: "0 auto"
 };
 
